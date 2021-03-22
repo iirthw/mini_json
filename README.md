@@ -1,9 +1,9 @@
-# mini_json
+# mini_json project
 
-/!\ Just a quick and dirty protptype 
+/!\ Just a quick and dirty prototype of Json reader 
 
 ## Goals:
-* Json reader protptype as simple and primitive as possible
+* Json reader prototype as simple and primitive as possible
 * Inefficient (by design)
 
 ### Implementation rules
@@ -14,4 +14,4 @@
 * No templates
 * Stick to [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 * _this_is_constant_ : use underscore for constant
-* _mData_ : prefix 'm' + camel case for the data members
+* _mData_ : prefix 'm' + CamelCase for the data members
