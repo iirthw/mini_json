@@ -12,3 +12,7 @@ target_sources (${PROJECT_NAME}
 if( MY_VARIABLE ) 
     message("MY_VARIABLE evaluates to True")
 endif()
+
+# Use the following to finish setting up Gtest:
+# https://github.com/google/googletest/blob/master/googletest/README.md
+# https://stackoverflow.com/questions/8507723/how-to-start-working-with-gtest-and-cmake
