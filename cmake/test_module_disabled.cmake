@@ -1,3 +1,3 @@
 message( "+-------------------------------+" )
-message( "| GTest runner is enabled       |" )
+message( "| GTest module is disaabled     |" )
 message( "+-------------------------------+\n" )
