@@ -15,3 +15,11 @@
 * Stick to [YAGNI](https://en.wikipedia.org/wiki/You_aren%27t_gonna_need_it)
 * _this_is_constant_ : use underscore for constant
 * _mData_ : prefix 'm' + CamelCase for the data members
+
+## Setup
+
+## References
+1. https://github.com/google/googletest/blob/master/googletest/README.md
+2. https://github.com/kaizouman/gtest-cmake-example/
+3. http://www.kaizou.org/2014/11/gtest-cmake.html
+4. Effective Modern Cmake https://gist.github.com/mbinna/c61dbb39bca0e4fb7d1f73b0d66a4fd1
