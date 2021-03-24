@@ -8,11 +8,13 @@ message( "+-------------------------------+" )
 # (in such case GTEST_ROOT variable must be defined)
 # or it can be incorporated into an existing CMake build 
 # (define GTEST_FORCE_EXTERNAL for the latter option)
-if ( NOT DEFINED GTEST_ROOT AND NOT DEFINED ENV{GTEST_ROOT})
+if ( NOT DEFINED GTEST_ROOT 
+     AND NOT DEFINED ENV{GTEST_ROOT}
+     AND NOT DEFINED GTEST_FORCE_EXTERNAL )
 	message( 
 		"+-----------------------------------------------------------------------------------------+\n"
 		"/!\\ Warning /!\\ \n"
-		"GTEST_ROOT is not defined. From now there are three options:\n"
+		"GTEST_ROOT is not defined. Now, there are three options:\n"
 		"1. Specify GTEST_ROOT when running cmake, like this: 'cmake -DGTEST_ROOT=FooBar ... '\n"
 		"2. Configure GTEST_ROOT environment variable (see how environmet vars are defined on your OS) \n" 
 		"3. Enable GTEST_FORCE_EXTERNAL, like this: 'cmake -DGTEST_FORCE_EXTERNAL ... '\n"
