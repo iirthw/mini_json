@@ -1,6 +1,6 @@
 #pragma once
 
-#include <srting>
+#include <string>
 
 namespace mini
 {
