@@ -7,6 +7,6 @@ if ( NOT TEST_TARGET )
 endif() # if (TEST_TARGET)
 
 include( ${PROJECT_SOURCE_DIR}/cmake/tests_enabled.cmake )
-include( ${PROJECT_SOURCE_DIR}/cmake/find_gtest.cmake )
+include( ${PROJECT_SOURCE_DIR}/cmake/configure_gtest.cmake )
 
 add_subdirectory(test_json)
