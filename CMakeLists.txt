@@ -3,11 +3,6 @@ cmake_minimum_required(VERSION 3.19)
 set(CMAKE_CXX_STANDARD 14)
 project(mini_json)
 
-# According to the cmake documentation
-# https://cmake.org/cmake/help/latest/command/enable_testing.html
-# enable_testing command should be at the directory root
-enable_testing()
-
 # Group CMake predefined targets in one VS folder
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
