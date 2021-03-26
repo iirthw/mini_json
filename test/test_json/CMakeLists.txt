@@ -1,15 +1,16 @@
-set ( TEST_JSON test_json)
+project(RunUnitTests)
 
-set(SRCS test_json.cpp )
-add_executable( ${TEST_JSON} main.cpp ${SRCS} )
+set(SOURCE_FILES test_json.cpp)
 
-get_target_property(MINI_JSON_INCLUDES "mini_json" INCLUDE_DIRECTORIES)
-target_include_directories( ${TEST_JSON} 
+add_executable(${PROJECT_NAME} main.cpp ${SOURCE_FILES})
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} 
+             PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
+
+get_target_property(LIBRARY_INCLUDES ${CMAKE_PROJECT_NAME} INCLUDE_DIRECTORIES)
+target_include_directories(${PROJECT_NAME}
                             PUBLIC
-                            ${MINI_JSON_INCLUDES} )
+                            ${LIBRARY_INCLUDES})
 
-target_link_libraries( ${TEST_JSON}
-			           ${MINI_JSON_LIB} 
-                       gtest )
+target_link_libraries(${PROJECT_NAME} ${CMAKE_PROJECT_NAME} gtest)
 
-add_test(NAME ${TEST_JSON} COMMAND ${TEST_JSON})
+add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})

@@ -1,8 +1,7 @@
-cmake_minimum_required( VERSION 3.19 )
+cmake_minimum_required(VERSION 3.19)
 
-set( CMAKE_CXX_STANDARD 14 )
-set( PROJ_NAME "mini_json" )
-project( ${PROJ_NAME} )
+set(CMAKE_CXX_STANDARD 14)
+project(mini_json)
 
 # According to the cmake documentation
 # https://cmake.org/cmake/help/latest/command/enable_testing.html
