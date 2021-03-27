@@ -24,13 +24,11 @@ if (NOT DEFINED GTEST_ROOT
 elseif (NOT DEFINED GTEST_ROOT AND DEFINED ENV{GTEST_ROOT})
 	message( "Use environment variable " ENV{GTEST_ROOT} )
 	set(GTEST_ROOT ENV{GTEST_ROOT})
-
-	set(FIND_GTEST TRUE)
-elseif (DEFINED GTEST_ROOT)
-	set(FIND_GTEST TRUE)
 endif()
 
-if (${FIND_GTEST})
+if (DEFINED ${GTEST_ROOT})
+	message("Found GTEST_ROOT = " ${GTEST_ROOT})
+		
 	find_package(GTest REQUIRED)
 
 	if (NOT GTEST_FOUND)
