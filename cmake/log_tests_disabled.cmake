@@ -1,3 +1,3 @@
-message( "+-------------------------------+" )
-message( "|  Test module is disaabled     |" )
-message( "+-------------------------------+\n" )
+message("+-------------------------------+" )
+message("|  Test module is disaabled     |" )
+message("+-------------------------------+\n")

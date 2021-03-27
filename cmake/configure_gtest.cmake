@@ -1,16 +1,16 @@
 get_filename_component(CURR_CMAKE_FILE_NAME ${CMAKE_CURRENT_LIST_FILE} NAME)
 
-message( "+-------------------------------+" )
-message( "| Processing " ${CURR_CMAKE_FILE_NAME} "   |")
-message( "+-------------------------------+" )
+message("+-------------------------------+")
+message("| Processing " ${CURR_CMAKE_FILE_NAME} "   |")
+message("+-------------------------------+")
 
 # GoogleTest must be already installed as a standalone project
 # (in such case GTEST_ROOT variable must be defined)
 # or it can be incorporated into an existing CMake build 
 # (define GTEST_FORCE_EXTERNAL for the latter option)
-if ( NOT DEFINED GTEST_ROOT 
+if (NOT DEFINED GTEST_ROOT 
      AND NOT DEFINED ENV{GTEST_ROOT}
-     AND NOT DEFINED GTEST_FORCE_EXTERNAL )
+     AND NOT DEFINED GTEST_FORCE_EXTERNAL)
 	message( 
 		"+-----------------------------------------------------------------------------------------+\n"
 		"/!\\ Warning /!\\ \n"
@@ -21,25 +21,25 @@ if ( NOT DEFINED GTEST_ROOT
 		"+-----------------------------------------------------------------------------------------+\n"
 		)
 	return()
-elseif ( NOT DEFINED GTEST_ROOT AND DEFINED ENV{GTEST_ROOT} )
+elseif (NOT DEFINED GTEST_ROOT AND DEFINED ENV{GTEST_ROOT})
 	message( "Use environment variable " ENV{GTEST_ROOT} )
-	set( GTEST_ROOT ENV{GTEST_ROOT} )
+	set(GTEST_ROOT ENV{GTEST_ROOT})
 
-	set( FIND_GTEST TRUE )
-elseif ( DEFINED GTEST_ROOT )
-	set( FIND_GTEST TRUE )
+	set(FIND_GTEST TRUE)
+elseif (DEFINED GTEST_ROOT)
+	set(FIND_GTEST TRUE)
 endif()
 
-if ( ${FIND_GTEST} )
-	find_package( GTest REQUIRED )
+if (${FIND_GTEST})
+	find_package(GTest REQUIRED)
 
-	if ( NOT GTEST_FOUND )
-		message( FATAL_ERROR "GoogleTest not found" )
+	if (NOT GTEST_FOUND)
+		message(FATAL_ERROR "GoogleTest not found")
 	endif()
 
-	include_directories( ${GTEST_INCLUDE_DIRS} )
+	include_directories(${GTEST_INCLUDE_DIRS})
 endif()
 
-if ( DEFINED GTEST_FORCE_EXTERNAL )
-    include( ${PROJECT_SOURCE_DIR}/cmake/download_gtest.cmake )
+if (DEFINED GTEST_FORCE_EXTERNAL)
+    include(${PROJECT_SOURCE_DIR}/cmake/download_gtest.cmake)
 endif() # DEFINED GTEST_FORCE_EXTERNAL
