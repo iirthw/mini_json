@@ -38,3 +38,10 @@ TEST(JsonTest, TestConstruction)
 
     ASSERT_TRUE(true);
 }
+
+TEST(JsonTest, TestGetInt)
+{
+    minijson::Json json("{ number: 2 }");
+
+    ASSERT_EQ(2, json.getInt("number"));
+}
