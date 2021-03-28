@@ -17,6 +17,10 @@ namespace minijson
 			int getInt(const std::string& str) const { return 0; }
 			float getFloat(const std::string& str) const { return 0.0f; }
 			std::string getString(const std::string& str) const { return ""; }
+			int getInt(const std::string& key) const;
+			float getFloat(const std::string& key) const { return 0.0f; }
+			std::string getString(const std::string& key) const { return ""; }
+
 			size_t numObjects() const { return 0u; }
 			Json operator[] (int index) const { return Json(""); }
 
