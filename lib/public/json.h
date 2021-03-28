@@ -13,10 +13,10 @@ namespace mjson
 			: mRawData(str) {}
 
 			Json parse(const std::string& attrib) const { return Json(""); }
-			bool getBool() const { return false; }
-			int getInt() const { return 0; }
-			float getFloat() const { return 0.0f; }
-			std::string getString() const { return ""; }
+			bool getBool(const std::string& key) const { return false; }
+			int getInt(const std::string& str) const { return 0; }
+			float getFloat(const std::string& str) const { return 0.0f; }
+			std::string getString(const std::string& str) const { return ""; }
 			size_t numObjects() const { return 0u; }
 			Json operator[] (int index) const { return Json(""); }
 
