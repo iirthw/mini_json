@@ -1,6 +1,6 @@
 #include "json.h"
 
-namespace mini
+namespace mjson
 {
 
-} // namespace mini
+} // namespace mjson

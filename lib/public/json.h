@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace mini
+namespace mjson
 {
 	class Json
 	{
@@ -26,4 +26,4 @@ namespace mini
 
 			std::string mRawData;
 	}; // class Json
-} // namespace mini
+} // namespace mjson
