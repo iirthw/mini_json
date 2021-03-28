@@ -2,7 +2,7 @@
 
 #include "json.h"
 
-class QueueTest : public ::testing::Test {
+class JsonTest : public ::testing::Test {
 protected:
     void SetUp() override {
         
@@ -10,3 +10,10 @@ protected:
 
     // void TearDown() override {}
 };
+
+TEST(JsonTest, TestConstruction)
+{
+    mjson::Json json("{ number: 1 }");
+
+    ASSERT_TRUE(true);
+}
