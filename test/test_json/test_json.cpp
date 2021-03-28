@@ -34,7 +34,7 @@ protected:
 
 TEST(JsonTest, TestConstruction)
 {
-    mjson::Json json("{ number: 1 }");
+    minijson::Json json("{ number: 1 }");
 
     ASSERT_TRUE(true);
 }
