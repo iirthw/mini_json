@@ -5,6 +5,7 @@
 ## Goals:
 * Json reader prototype as simple and primitive as possible
 * Inefficient (by design)
+* DOES NO Json Schema validation
 
 ### Implementation rules
 * Do not help the compiler:
