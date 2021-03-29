@@ -2,10 +2,13 @@
 
 namespace minijson
 {
-    class StringUtils
+    namespace utils
     {
-        public:
+        class StringUtils
+        {
+            public:
 
-            static std::string removeSeparators(const std::string& str);
-    }; // class StringUtils
+                static std::string removeSeparators(const std::string& str);
+        }; // class StringUtils
+    } // namespace utils
 } // namespace minijson
