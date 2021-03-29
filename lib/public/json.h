@@ -1,5 +1,6 @@
 #pragma once
 
+#include <memory>
 #include <string>
 
 namespace minijson
@@ -7,6 +8,9 @@ namespace minijson
 	class Json
 	{
 		public:
+		
+			explicit Json(const std::string& data);
+
 			// FIXME: all of the following have dummy implementation
 
 			explicit Json(const std::string& data);
@@ -27,6 +31,7 @@ namespace minijson
 			static std::string readTextFile(const std::string& filePath) { return ""; }
 			static Json fromFile(const std::string& filePath) { return Json(""); }
 
-			std::string mRawData;
+			struct JsonImpl;
+			std::unique_ptr<JsonImpl> mImpl;
 	}; // class Json
 } // namespace minijson
