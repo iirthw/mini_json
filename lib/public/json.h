@@ -10,6 +10,9 @@ namespace minijson
 		public:
 		
 			explicit Json(const std::string& data);
+			~Json();
+			Json(Json&& rhs) noexcept;
+			Json& operator= (Json&& rhs) noexcept;
 
 			// FIXME: all of the following have dummy implementation
 

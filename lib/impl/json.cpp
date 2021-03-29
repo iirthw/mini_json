@@ -18,7 +18,14 @@ namespace minijson
         std::vector<std::unique_ptr<JsonIntern>> mChildren;
     };
 
+    // =========================================================================
+    // Json 
+    // =========================================================================
     Json::Json(const std::string& data)
-    : mRawData(utils::removeSeparators(data)) {}
+    : mImpl(std::make_unique<JsonImpl>(data))
+    {}
 
+    Json::~Json() = default;
+    Json::Json(Json&& rhs) noexcept = default;
+    Json& Json::operator= (Json&& rhs) noexcept = default;
 } // namespace minijson
