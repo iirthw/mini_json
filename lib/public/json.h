@@ -9,7 +9,7 @@ namespace minijson
 		public:
 			// FIXME: all of the following have dummy implementation
 
-			explicit Json(const std::string& str);
+			explicit Json(const std::string& data);
 
 			Json parse(const std::string& attrib) const { return Json(""); }
 			bool getBool(const std::string& key) const { return false; }
