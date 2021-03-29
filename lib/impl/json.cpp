@@ -1,6 +1,5 @@
 #include "json.h"
 
-#include <memory>
 #include <vector>
 
 #include "string_utils.h"
