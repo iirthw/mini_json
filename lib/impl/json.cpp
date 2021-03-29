@@ -10,15 +10,12 @@ namespace minijson
     // Class to represent internal json objects hierarchy
     struct Json::JsonImpl
     {
-        public:
+        explicit JsonImpl()
+        : mRawData(utils::removeSeparators(data))
+        , mChildren({}) {}
 
-            explicit JsonImpl()
-            : mRawData(utils::removeSeparators(data))
-            , mChildren({}) {}
-
-        private:
-            std::string mRawData;            
-            std::vector<std::unique_ptr<JsonIntern>> children;
+        std::string mRawData;            
+        std::vector<std::unique_ptr<JsonIntern>> mChildren;
     };
 
     Json::Json(const std::string& data)
