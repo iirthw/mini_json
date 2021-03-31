@@ -6,9 +6,12 @@ namespace minijson
 {
     namespace utils
     {
-        std::string removeSeparators(const std::string& str)
+        void StringUtils::removeWhitespace(std::string& input)
         {
-            return str.erase(std::remove_if(str.begin(), str.end(), std::isspace));
+            input.erase(
+                std::remove_if(input.begin(), input.end(), std::isspace),
+                input.end()
+            );
         }
     } // namespace utils
 } // namespace minijson
