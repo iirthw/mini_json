@@ -82,3 +82,13 @@ TEST(JsonTest, TestObject)
     auto jsonObject = json.rootElement();
     ASSERT_TRUE(jsonObject->getObject("person") != nullptr);
 }
+
+TEST(JsonTest, TestObject2)
+{
+    Json json("{ number: 1, person: { firstName: \"John\", lastName: \"Appleseed\" } }");
+    auto jsonObject = json.rootElement();
+    auto personObject = jsonObject->getObject("person");
+
+    ASSERT_TRUE(personObject->getString("firstName") == "John");
+    ASSERT_TRUE(personObject->getString("lastName") == "Appleseed");
+}
