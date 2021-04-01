@@ -5,7 +5,16 @@
 
 namespace minijson
 {
-	class JsonObject;
+	class JsonObject
+	{
+		public:
+
+			bool getBool(const std::string& key) const { return false; }
+			int getInt(const std::string& key) const { return 0; }
+			float getFloat(const std::string& key) const { return 0.0f; }
+			std::string getString(const std::string& key) const { return ""; }
+			std::shared_ptr<JsonObject> getObject(const std::string& key) { return nullptr; }
+	}; // class JsonObject
 
 	class Json
 	{
@@ -18,12 +27,7 @@ namespace minijson
 			Json(Json&& rhs) noexcept;
 			Json& operator= (Json&& rhs) noexcept;
 
-			std::shared_ptr<JsonObject> 
-				getObject(std::shared_ptr<JsonObject> obj,const std::string& key) const;
-			bool getBool(std::shared_ptr<JsonObject> obj, const std::string& key) const;
-			int getInt(std::shared_ptr<JsonObject> obj, const std::string& key) const;
-			float getFloat(std::shared_ptr<JsonObject> obj, const std::string& key) const;
-			std::string getString(std::shared_ptr<JsonObject> obj, const std::string& key) const;
+			std::shared_ptr<JsonObject> rootElement() const { return nullptr; }
 
 			size_t numObjects() const { return 0u; }
 			Json operator[] (int index) const { return Json(""); }
