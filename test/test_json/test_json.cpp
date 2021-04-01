@@ -23,6 +23,8 @@ Example Json schema:
 }
 */
 
+using namespace minijson;
+
 class JsonTest : public ::testing::Test {
 protected:
     void SetUp() override {
@@ -34,14 +36,49 @@ protected:
 
 TEST(JsonTest, TestConstruction)
 {
-    minijson::Json json("{ number: 1 }");
-
-    ASSERT_TRUE(true);
+    Json json("{ number: 1 }");
+    auto jsonObject = json.rootElement();
+    ASSERT_TRUE(jsonObject != nullptr);
 }
 
 TEST(JsonTest, TestGetInt)
 {
-    minijson::Json json("{ number: 2 }");
+    Json json("{ number: 2 }");
+    auto jsonObject = json.rootElement();
+    ASSERT_EQ(2, jsonObject->getInt("number"));
+}
 
-    ASSERT_EQ(2, json.getInt("number"));
+TEST(JsonTest, TestGetInt1)
+{
+    Json json("{ number1: 1, number2: 2 }");
+    auto jsonObject = json.rootElement();
+    ASSERT_EQ(2, jsonObject->getInt("number2"));
+}
+
+TEST(JsonTest, TestGetFloat)
+{
+    Json json("{ floatNumber : 1.0f }");
+    auto jsonObject = json.rootElement();
+    ASSERT_EQ(1.0f, jsonObject->getFloat("floatNumber"));
+}
+
+TEST(JsonTest, TestGetFloat2)
+{
+    Json json("{ number: 1, floatNumber : 1.0f }");
+    auto jsonObject = json.rootElement();
+    ASSERT_EQ(1.0f, jsonObject->getFloat("floatNumber"));
+}
+
+TEST(JsonTest, TestString)
+{
+    Json json("{ number: 1, floatNumber: 2.0f, foo: \"bar\" }");
+    auto jsonObject = json.rootElement();
+    ASSERT_TRUE(jsonObject->getString("foo") == "bar");
+}
+
+TEST(JsonTest, TestObject)
+{
+    Json json("{ number: 1, person: { firstName: \"John\", lastName: \"Appleseed\" } }");
+    auto jsonObject = json.rootElement();
+    ASSERT_TRUE(jsonObject->getObject("person") != nullptr);
 }
