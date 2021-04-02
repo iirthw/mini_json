@@ -14,3 +14,10 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} ${CMAKE_PROJECT_NAME} gtest)
 
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
+
+message("Copying test resources")
+message(${CMAKE_CURRENT_SOURCE_DIR}/resources/simple.json)
+message("to \n" ${CMAKE_CURRENT_BINARY_DIR}/simple.json)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/resources/simple.json 
+    ${CMAKE_CURRENT_BINARY_DIR}/simple.json COPYONLY)
