@@ -17,7 +17,7 @@ add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
 
 message("Copying test resources")
 message(${CMAKE_CURRENT_SOURCE_DIR}/resources/simple.json)
-message("to \n" ${CMAKE_CURRENT_BINARY_DIR}/simple.json)
+message("to \n" ${CMAKE_CURRENT_BINARY_DIR}/resources/simple.json)
 
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/resources/simple.json 
-    ${CMAKE_CURRENT_BINARY_DIR}/simple.json COPYONLY)
+    ${CMAKE_CURRENT_BINARY_DIR}/resources/simple.json COPYONLY)
