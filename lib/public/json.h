@@ -34,9 +34,7 @@ namespace minijson
 
 			static Json fromFile(const std::string& filePath) { return Json(""); }
 
-		private:
-			
-			static std::string readTextFile(const std::string& filePath) { return ""; }			
+		private:			
 
 			struct JsonImpl;
 			std::unique_ptr<JsonImpl> mImpl;
