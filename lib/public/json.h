@@ -32,10 +32,11 @@ namespace minijson
 			size_t numObjects() const { return 0u; }
 			Json operator[] (int index) const { return Json(""); }
 
+			static Json fromFile(const std::string& filePath) { return Json(""); }
+
 		private:
 			
-			static std::string readTextFile(const std::string& filePath) { return ""; }
-			static Json fromFile(const std::string& filePath) { return Json(""); }
+			static std::string readTextFile(const std::string& filePath) { return ""; }			
 
 			struct JsonImpl;
 			std::unique_ptr<JsonImpl> mImpl;
