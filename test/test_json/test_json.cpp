@@ -104,3 +104,17 @@ TEST(JsonTest, TestObject3)
     ASSERT_TRUE(personObject->getString("firstName") == "John");
     ASSERT_TRUE(personObject->getString("lastName") == "Appleseed");
 }
+
+TEST(JsonTest, TestFromFile)
+{
+    Json json = Json::fromFile("resources/simple.json");
+    auto jsonObject = json.rootElement();
+    auto addressObject = jsonObject->getObject("address");
+
+    EXPECT_TRUE(addressObject != nullptr);
+
+    EXPECT_EQ("21 Street", addressObject->getString("streetAddress"));
+    EXPECT_EQ("New York", addressObject->getString("city"));
+    EXPECT_EQ("NY", addressObject->getString("state"));
+    EXPECT_EQ(10021, addressObject->getInt("postalCode"));
+}
