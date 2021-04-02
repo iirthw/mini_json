@@ -92,3 +92,15 @@ TEST(JsonTest, TestObject2)
     ASSERT_TRUE(personObject->getString("firstName") == "John");
     ASSERT_TRUE(personObject->getString("lastName") == "Appleseed");
 }
+
+TEST(JsonTest, TestObject3)
+{
+    Json json("{ number: 1, \
+               person: { id: 10, firstName: \"John\", lastName: \"Appleseed\" } }");
+    auto jsonObject = json.rootElement();
+    auto personObject = jsonObject->getObject("person");
+
+    ASSERT_EQ(10, personObject->getInt("id"));
+    ASSERT_TRUE(personObject->getString("firstName") == "John");
+    ASSERT_TRUE(personObject->getString("lastName") == "Appleseed");
+}
