@@ -14,6 +14,9 @@ target_include_directories(${PROJECT_NAME}
 target_link_libraries(${PROJECT_NAME} ${CMAKE_PROJECT_NAME} gtest)
 
 add_test(NAME ${PROJECT_NAME} COMMAND ${PROJECT_NAME})
+# Consider using test properties to pass a WORKING_DIR, for instance
+# set_tests_properties(mytests PROPERTIES
+#        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 
 message("Copying test resources")
 message(${CMAKE_CURRENT_SOURCE_DIR}/resources/simple.json)
