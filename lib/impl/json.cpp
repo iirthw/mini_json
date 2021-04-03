@@ -1,5 +1,7 @@
 #include "json.h"
 
+#include <fstream>
+#include <sstream>
 #include <vector>
 
 #include "string_utils.h"
@@ -41,6 +43,15 @@ namespace minijson
     Json::~Json() = default;
     Json::Json(Json&& rhs) noexcept = default;
     Json& Json::operator= (Json&& rhs) noexcept = default;
+
+    Json Json::fromFile(const std::string& path)
+    {
+        std::ifstream inStream(path); // RAII object => will close automatically on destruction
+        std::stringstream stringBuffer;
+        stringBuffer << inStream.rdbuf();
+        
+        return Json(stringBuffer.str());
+    }
 
     // =========================================================================
     // JsonObject
