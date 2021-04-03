@@ -44,6 +44,11 @@ namespace minijson
     Json::Json(Json&& rhs) noexcept = default;
     Json& Json::operator= (Json&& rhs) noexcept = default;
 
+    std::string Json::rawString() const
+    {
+        return mImpl->mRawData;
+    }
+
     Json Json::fromFile(const std::string& path)
     {
         std::ifstream inStream(path); // RAII object => will close automatically on destruction
