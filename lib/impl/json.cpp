@@ -20,9 +20,6 @@
 
 namespace minijson
 {
-    // Internal json hierarchy representation
-    class JsonObject;
-
     // PIMPL for the Json class
     struct Json::JsonImpl
     {
@@ -57,9 +54,4 @@ namespace minijson
         
         return Json(stringBuffer.str());
     }
-
-    // =========================================================================
-    // JsonObject
-    // =========================================================================
-
 } // namespace minijson
