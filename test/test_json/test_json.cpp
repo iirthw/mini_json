@@ -107,11 +107,19 @@ TEST(JsonTest, TestObject3)
 
 TEST(JsonTest, TestFromFile)
 {
+    auto tempDir = testing::TempDir();
+    auto workingDir = testing::UnitTest::GetInstance()->original_working_dir();
+    Json json = Json::fromFile("resources/simple.json");
+    ASSERT_GT(json.rawString().size(), 1);
+}
+
+TEST(JsonTest, TestFromFile2)
+{
     Json json = Json::fromFile("resources/simple.json");
     auto jsonObject = json.rootElement();
     auto addressObject = jsonObject->getObject("address");
 
-    EXPECT_TRUE(addressObject != nullptr);
+    ASSERT_TRUE(addressObject != nullptr);
 
     EXPECT_EQ("21 Street", addressObject->getString("streetAddress"));
     EXPECT_EQ("New York", addressObject->getString("city"));
