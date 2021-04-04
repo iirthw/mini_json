@@ -26,12 +26,22 @@ Example Json schema:
 using namespace minijson;
 
 class JsonTest : public ::testing::Test {
-protected:
-    void SetUp() override {
-        
-    }
+    public:
 
-    // void TearDown() override {}
+        static std::string workingDir()
+        {
+            static std::string workDir = 
+                testing::UnitTest::GetInstance()->original_working_dir();
+
+            return workDir;
+        }
+
+    protected:
+
+        void SetUp() override 
+        {}    
+
+        // void TearDown() override {}
 };
 
 TEST(JsonTest, TestConstruction)
@@ -108,7 +118,7 @@ TEST(JsonTest, TestObject3)
 TEST(JsonTest, TestFromFile)
 {
     auto tempDir = testing::TempDir();
-    auto workingDir = testing::UnitTest::GetInstance()->original_working_dir();
+    auto workDir = JsonTest::workingDir();
     Json json = Json::fromFile("resources/simple.json");
     ASSERT_GT(json.rawString().size(), 1);
 }
