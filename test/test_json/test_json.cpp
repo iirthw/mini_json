@@ -44,7 +44,7 @@ class JsonTest : public ::testing::Test {
         // void TearDown() override {}
 };
 
-TEST(JsonTest, TestConstruction)
+TEST(JsonTest, TestRootElement)
 {
     Json json("{ number: 1 }");
     auto jsonObject = json.rootElement();
