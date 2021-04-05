@@ -120,6 +120,7 @@ TEST(JsonTest, TestFromFile)
     auto tempDir = testing::TempDir();
     auto workDir = JsonTest::workingDir();
     Json json = Json::fromFile("resources/simple.json");
+
     ASSERT_GT(json.rawString().size(), 1);
 }
 
