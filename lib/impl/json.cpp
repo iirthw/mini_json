@@ -41,6 +41,11 @@ namespace minijson
     Json::Json(Json&& rhs) noexcept = default;
     Json& Json::operator= (Json&& rhs) noexcept = default;
 
+    std::shared_ptr<JsonObject> Json::rootElement() const
+    {
+        return nullptr;
+    }
+
     std::string Json::rawString() const
     {
         return mImpl->mRawData;
@@ -53,5 +58,31 @@ namespace minijson
         stringBuffer << inStream.rdbuf();
         
         return Json(stringBuffer.str());
+    }
+
+    bool Json::getBool(std::shared_ptr<JsonObject> obj, const std::string& key) const
+    {
+        return false;
+    }
+
+    int Json::getInt(std::shared_ptr<JsonObject> obj, const std::string& key) const
+    {
+        return 0;
+    }
+
+    float Json::getFloat(std::shared_ptr<JsonObject> obj, const std::string& key) const
+    {
+        return 0.0f;
+    }
+
+    std::string Json::getString(std::shared_ptr<JsonObject> obj, const std::string& key) const
+    {
+        return "";
+    }
+
+    std::shared_ptr<JsonObject> Json::getObject(std::shared_ptr<JsonObject> obj,
+        const std::string& key) const
+    {
+        return nullptr;
     }
 } // namespace minijson

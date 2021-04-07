@@ -2,22 +2,32 @@
 
 #include <memory>
 #include <string>
+#include <utility>
 
 namespace minijson
 {
-	class JsonObject
+	/** 
+	 * A wrapper struct holding start& end positions of character interval 
+	 * from the corresponding json raw string
+	*/
+	struct JsonObject
 	{
-		public:
+		explicit JsonObject(const std::pair<uint16_t, uint16_t> posInString)
+		: interval(posInString)
+		{
+		}
 
-			bool getBool(const std::string& key) const { return false; }
-			int getInt(const std::string& key) const { return 0; }
-			float getFloat(const std::string& key) const { return 0.0f; }
-			std::string getString(const std::string& key) const { return ""; }
-			std::shared_ptr<JsonObject> getObject(const std::string& key) { return nullptr; }
-	}; // class JsonObject
+		std::pair<uint16_t, uint16_t> interval;
+	}; // struct JsonObject
+
+	// ========================================================================
+	// Json 
+	// ========================================================================
 
 	class Json
 	{
+		struct JsonImpl;
+
 		public:
 		
 			explicit Json(const std::string& data);
@@ -27,7 +37,7 @@ namespace minijson
 			Json(Json&& rhs) noexcept;
 			Json& operator= (Json&& rhs) noexcept;
 
-			std::shared_ptr<JsonObject> rootElement() const { return nullptr; }
+			std::shared_ptr<JsonObject> rootElement() const;
             std::string rawString() const;
 
 			size_t numObjects() const { return 0u; }
@@ -35,9 +45,19 @@ namespace minijson
 
 			static Json fromFile(const std::string& path);
 
+			bool getBool(std::shared_ptr<JsonObject> obj,
+				const std::string& key) const;
+			int getInt(std::shared_ptr<JsonObject> obj,
+				const std::string& key) const;
+			float getFloat(std::shared_ptr<JsonObject> obj,
+				const std::string& key) const;
+			std::string getString(std::shared_ptr<JsonObject> ojb,
+				const std::string& key) const;
+			std::shared_ptr<JsonObject> getObject(std::shared_ptr<JsonObject> obj,
+				const std::string& key) const;
+
 		private:			
 
-			struct JsonImpl;
 			std::unique_ptr<JsonImpl> mImpl;
 	}; // class Json
 } // namespace minijson
