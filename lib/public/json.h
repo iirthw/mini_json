@@ -19,6 +19,12 @@ namespace minijson
 		{
 		}
 
+		// Checks if the stored interval is valid (start <= end)
+		bool isValid() const
+		{
+			return interval.first <= interval.second;
+		}
+
 		std::pair<uint16_t, uint16_t> interval;
 	}; // struct JsonObject
 
