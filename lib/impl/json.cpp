@@ -1,5 +1,6 @@
 #include "json.h"
 
+#include <cassert>
 #include <fstream>
 #include <sstream>
 #include <vector>
@@ -28,6 +29,7 @@ namespace minijson
         {}
 
         std::shared_ptr<JsonObject> rootElement() const;
+        int getInt(std::shared_ptr<JsonObject> element, const std::string& key) const;
 
         std::string mRawData;
     };
@@ -41,6 +43,21 @@ namespace minijson
         const uint16_t posStart = (mRawData.front() == '{') ? 1u : 0u;
         const uint16_t posEnd = (mRawData.back() == '}') ? mRawData.length() - 1 : mRawData.length();
         return std::make_shared<JsonObject>(std::make_pair(posStart, posEnd));
+    }
+
+    int Json::JsonImpl::getInt(std::shared_ptr<JsonObject> element, const std::string& key) const
+    {
+        if (!element)
+        {
+            assert(false);
+            return 0;
+        }
+
+        assert(element->isValid());
+        std::string jsonStr = mRawData.substr(element->interval.first,
+            element->interval.second - element->interval.first);
+
+        return 0;
     }
 
     // ========================================================================
@@ -81,7 +98,7 @@ namespace minijson
 
     int Json::getInt(std::shared_ptr<JsonObject> obj, const std::string& key) const
     {
-        return 0;
+        return mImpl->getInt(obj, key);
     }
 
     float Json::getFloat(std::shared_ptr<JsonObject> obj, const std::string& key) const
