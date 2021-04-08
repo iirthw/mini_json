@@ -45,16 +45,11 @@ namespace minijson
 
 			static Json fromFile(const std::string& path);
 
-			bool getBool(std::shared_ptr<JsonObject> obj,
-				const std::string& key) const;
-			int getInt(std::shared_ptr<JsonObject> obj,
-				const std::string& key) const;
-			float getFloat(std::shared_ptr<JsonObject> obj,
-				const std::string& key) const;
-			std::string getString(std::shared_ptr<JsonObject> ojb,
-				const std::string& key) const;
-			std::shared_ptr<JsonObject> getObject(std::shared_ptr<JsonObject> obj,
-				const std::string& key) const;
+			bool getBool(std::shared_ptr<JsonObject> obj, const std::string& key) const;
+			int getInt(std::shared_ptr<JsonObject> obj, const std::string& key) const;
+			float getFloat(std::shared_ptr<JsonObject> obj, const std::string& key) const;
+			std::string getString(std::shared_ptr<JsonObject> ojb, const std::string& key) const;
+			std::shared_ptr<JsonObject> getObject(std::shared_ptr<JsonObject> obj, const std::string& key) const;
 
 		private:			
 
