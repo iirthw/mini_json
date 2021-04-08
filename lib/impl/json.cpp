@@ -27,12 +27,26 @@ namespace minijson
         : mRawData(StringUtils::removeWhitespace(data))
         {}
 
+        std::shared_ptr<JsonObject> rootElement() const;
+
         std::string mRawData;
     };
 
-    // =========================================================================
+    // ========================================================================
+    // JsonImpl
+    // ========================================================================
+
+    std::shared_ptr<JsonObject> Json::JsonImpl::rootElement() const
+    {
+        const uint16_t posStart = (mRawData.front() == '{') ? 1u : 0u;
+        const uint16_t posEnd = (mRawData.back() == '}') ? mRawData.length() - 1 : mRawData.length();
+        return std::make_shared<JsonObject>(std::make_pair(posStart, posEnd));
+    }
+
+    // ========================================================================
     // Json 
-    // =========================================================================
+    // ========================================================================
+
     Json::Json(const std::string& data)
     : mImpl(std::make_unique<JsonImpl>(data))
     {}
@@ -43,7 +57,7 @@ namespace minijson
 
     std::shared_ptr<JsonObject> Json::rootElement() const
     {
-        return nullptr;
+        return mImpl->rootElement();
     }
 
     std::string Json::rawString() const
