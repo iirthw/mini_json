@@ -55,71 +55,74 @@ TEST(JsonTest, TestRootElement)
 TEST(JsonTest, TestGetInt)
 {
     Json json("{ number: 2 }");
-    auto jsonObject = json.rootElement();
+    auto root = json.rootElement();
 
-    ASSERT_EQ(2, jsonObject->getInt("number"));
+    ASSERT_EQ(2, json.getInt(root, "number"));
 }
 
 TEST(JsonTest, TestGetInt1)
 {
     Json json("{ number1: 1, number2: 2 }");
-    auto jsonObject = json.rootElement();
+    auto root = json.rootElement();
 
-    ASSERT_EQ(2, jsonObject->getInt("number2"));
+    ASSERT_EQ(2, json.getInt(root, "number2"));
 }
 
 TEST(JsonTest, TestGetFloat)
 {
     Json json("{ floatNumber : 1.0f }");
-    auto jsonObject = json.rootElement();
+    auto root = json.rootElement();
 
-    ASSERT_EQ(1.0f, jsonObject->getFloat("floatNumber"));
+    ASSERT_EQ(1.0f, json.getFloat(root, "floatNumber"));
 }
 
 TEST(JsonTest, TestGetFloat2)
 {
     Json json("{ number: 1, floatNumber : 1.0f }");
-    auto jsonObject = json.rootElement();
+    auto root = json.rootElement();
 
-    ASSERT_EQ(1.0f, jsonObject->getFloat("floatNumber"));
+    ASSERT_EQ(1.0f, json.getFloat(root, "floatNumber"));
 }
 
 TEST(JsonTest, TestString)
 {
     Json json("{ number: 1, floatNumber: 2.0f, foo: \"bar\" }");
-    auto jsonObject = json.rootElement();
+    auto root = json.rootElement();
 
-    ASSERT_TRUE(jsonObject->getString("foo") == "bar");
+    ASSERT_TRUE(json.getString(root, "foo") == "bar");
 }
 
 TEST(JsonTest, TestObject)
 {
     Json json("{ number: 1, person: { firstName: \"John\", lastName: \"Appleseed\" } }");
-    auto jsonObject = json.rootElement();
+    auto root = json.rootElement();
 
-    ASSERT_TRUE(jsonObject->getObject("person") != nullptr);
+    ASSERT_TRUE(json.getObject(root, "person") != nullptr);
 }
 
 TEST(JsonTest, TestObject2)
 {
-    Json json("{ number: 1, person: { firstName: \"John\", lastName: \"Appleseed\" } }");
-    auto jsonObject = json.rootElement();
-    auto personObject = jsonObject->getObject("person");
+    Json json(
+        "{ number: 1, person: { firstName: \"John\", lastName: \"Appleseed\" } }"
+    );
+    auto root = json.rootElement();
+    auto person = json.getObject(root, "person");
 
-    ASSERT_TRUE(personObject->getString("firstName") == "John");
-    ASSERT_TRUE(personObject->getString("lastName") == "Appleseed");
+    ASSERT_TRUE(json.getString(person, "firstName") == "John");
+    ASSERT_TRUE(json.getString(person, "lastName") == "Appleseed");
 }
 
 TEST(JsonTest, TestObject3)
 {
-    Json json("{ number: 1, \
-               person: { id: 10, firstName: \"John\", lastName: \"Appleseed\" } }");
-    auto jsonObject = json.rootElement();
-    auto personObject = jsonObject->getObject("person");
+    Json json(
+        "{ number: 1, person: { id: 10, firstName: \"John\", lastName: \"Appleseed\" } }"
+    );
+    auto root = json.rootElement();
+    auto person = json.getObject(root, "person");
 
-    ASSERT_EQ(10, personObject->getInt("id"));
-    ASSERT_TRUE(personObject->getString("firstName") == "John");
-    ASSERT_TRUE(personObject->getString("lastName") == "Appleseed");
+    ASSERT_EQ(10, json.getInt(person, "id"));
+    ASSERT_TRUE(json.getString(person, "firstName") == "John");
+    ASSERT_TRUE(json.getString(person, "lastName") == "Appleseed");
 }
 
 TEST(JsonTest, TestFromFile)
@@ -134,13 +137,13 @@ TEST(JsonTest, TestFromFile)
 TEST(JsonTest, TestFromFile2)
 {
     Json json = Json::fromFile("resources/simple.json");
-    auto jsonObject = json.rootElement();
-    auto addressObject = jsonObject->getObject("address");
+    auto root = json.rootElement();
+    auto address = json.getObject(root, "address");
 
-    ASSERT_TRUE(addressObject != nullptr);
+    ASSERT_TRUE(address != nullptr);
 
-    EXPECT_EQ("21 Street", addressObject->getString("streetAddress"));
-    EXPECT_EQ("New York", addressObject->getString("city"));
-    EXPECT_EQ("NY", addressObject->getString("state"));
-    EXPECT_EQ(10021, addressObject->getInt("postalCode"));
+    EXPECT_EQ("21 Street", json.getString(address, "streetAddress"));
+    EXPECT_EQ("New York", json.getString(address, "city"));
+    EXPECT_EQ("NY", json.getString(address, "state"));
+    EXPECT_EQ(10021, json.getInt(address, "postalCode"));
 }
