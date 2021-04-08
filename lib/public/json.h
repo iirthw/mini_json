@@ -12,7 +12,9 @@ namespace minijson
 	*/
 	struct JsonObject
 	{
-		explicit JsonObject(const std::pair<uint16_t, uint16_t> posInString)
+		// Argument is passed by value (not const T&) as we need a copy anyway,
+		// that will allow to benefit from copy ellision though
+		explicit JsonObject(std::pair<uint16_t, uint16_t> posInString)
 		: interval(posInString)
 		{
 		}
