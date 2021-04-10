@@ -1,2 +1,4 @@
 # Build dir
 build
+# swap files
+.*.swp
