@@ -2,11 +2,30 @@ w = "{ name: GSP, age : 39 }"
 seq = ['{', ' ', 'name', ':', 'GSP', ',', 'age', ':', '39', '}']
 
 def lex(s):
-	print('Parsing ' + s)
-	print(len(s))
+    tokens = []
 	while len(s):
-		s = s[1:]
+        token, s = lex_brace(s)
+		if token != None
+            tokens.append(token)
+            continue
+
+        token, s = lex_bracket(s)
 		print(len(s))
+
+def lex_brace(s):
+    pass
+
+def lex_bracket(s):
+    pass
+
+def lex_string(s):
+    pass
+
+def lex_number(s):
+    pass
+
+def lex_bool(s):
+    pass
 
 def main():
 	lex(w)
