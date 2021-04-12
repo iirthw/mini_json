@@ -1,6 +1,9 @@
 w = "{ name: GSP, age : 39 }"
 seq = ['{', ' ', 'name', ':', 'GSP', ',', 'age', ':', '39', '}']
 
+JSON_BRACE = ['{', '}']
+JSON_BRACKET = ['[', ']']
+
 def lex(s):
     tokens = []
 	while len(s):
@@ -13,10 +16,16 @@ def lex(s):
 		print(len(s))
 
 def lex_brace(s):
-    pass
+    if s[0] is in JSON_BRACE
+        return s[0], s[1:]
+    else:
+        return None, s
 
 def lex_bracket(s):
-    pass
+    if s[0] in JSON_BRACKET:
+        return s[0], s[1:]
+    else:
+        return None, s
 
 def lex_string(s):
     pass
