@@ -1,4 +1,4 @@
-w = '{\"name\": \"GSP\", \"age\" : 39 }'
+w = '{\"name\": \"GSP\", \"age\" : 39,  "isChamp": true }'
 seq = ['{', ' ', 'name', ':', 'GSP', ',', 'age', ':', '39', '}']
 
 LEX_BRACE = ['{', '}']
@@ -13,28 +13,33 @@ LEX_FALSE = 'false'
 def lex(s):
     tokens = []
     while len(s):
-        # braces
+        # brace
         token, s = lex_brace(s)
         if token is not None:
             tokens.append(token)
 
-        # brackets
+        # bracket
         token, s = lex_bracket(s)
         if token is not None:
             tokens.append(token)
 
-        # separators
+        # separator
         token, s = lex_separator(s)
         if token is not None:
             tokens.append(token)
 
-        # strings
+        # string
         token, s = lex_string(s)
         if token is not None:
             tokens.append(token)
 
-        # numbers
+        # number
         token, s = lex_number(s)
+        if token is not None:
+            tokens.append(token)
+
+        # bool
+        token, s = lex_bool(s)
         if token is not None:
             tokens.append(token)
 
@@ -99,11 +104,11 @@ def lex_number(s):
         return s[:i], s[i+1:]
 
 def lex_bool(s):
-    if len(s) >= 4 and s == LEX_TRUE:
+    if len(s) >= 4 and s[:4] == LEX_TRUE:        
         return LEX_TRUE, s[4:]
-    elif len(s) >= 5 and s == LEX_FALSE:
+    elif len(s) >= 5 and s[:5] == LEX_FALSE:
         return LEX_FALSE, s[5:]
-    else:
+    else:        
         return None, s
 
 def main():
