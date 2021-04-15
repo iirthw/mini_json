@@ -33,12 +33,19 @@ def parse_array(tokens):
         return json_array, tokens[1:]
 
     while True:
-        json_array.append(t0)
-        tokens = tokens[1:]
+        json, tokens = parse(tokens)
+        json_array.append(json)
+        
+        if !len(tokens):
+            raise Exception('No closing bracket found')
 
         t = tokens[0]
         if t == RIGHT_BRACKET:
-            
+            return json_array, tokens[1:]
+        elif t != COMMA:
+            raise Exception('Expected a comma after object in the array')
+        else:
+            tokens = tokens[1:]
 
 
 # ==============================================================================
