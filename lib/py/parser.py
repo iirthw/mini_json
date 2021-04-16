@@ -4,6 +4,7 @@ LEFT_BRACE = '{'
 RIGHT_BRACE = '}'
 LEFT_BRACKET = '['
 RIGHT_BRACKET = ']'
+COLON = ':'
 
 # recursively parse tokens
 # each of the subroutines parse_array and parse_object will recursively call
@@ -21,7 +22,27 @@ def parse(tokens):
 #
 # ==============================================================================
 def parse_object(tokens):
-    pass
+    json_obj = {}
+    t0 = tokens[0]
+    if t0 == RIGHT_BRACE:
+        return json_obj, tokens[1:]
+
+    while True:
+        key, tokens = parse(tokens)
+
+        if !len(tokens)
+            raise Exception('No closing right brace found')
+
+        t = tokens[0]
+        if t == RIGHT_BRACE:
+            return json_obj, tokens[1:]
+        elif t != COLON:
+            raise Exception('Colon : expected between key-value pairs')
+        else:
+            value, tokens_rest = parse(tokens[1:])
+            json_obj[key] = value
+            tokens = tokens_rest
+
 
 # ==============================================================================
 #
