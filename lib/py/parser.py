@@ -75,6 +75,8 @@ def parse_array(tokens):
 # ==============================================================================
 def main():
     print("ololol")
+    arr = parse_array([1, ',', 2, ',', 3, ',', 4, ']'])
+    print(arr)
 
 if __name__ == "__main__":
     main()
