@@ -30,7 +30,7 @@ def parse_object(tokens):
     while True:
         key, tokens = parse(tokens)
 
-        if !len(tokens)
+        if len(tokens) != 0:
             raise Exception('No closing right brace found')
 
         t = tokens[0]
@@ -57,7 +57,7 @@ def parse_array(tokens):
         json, tokens = parse(tokens)
         json_array.append(json)
         
-        if !len(tokens):
+        if len(tokens) != 0:
             raise Exception('No closing bracket found')
 
         t = tokens[0]
