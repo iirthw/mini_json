@@ -50,7 +50,7 @@ def parse_object(tokens):
 # ==============================================================================
 def parse_array(tokens):
     json_array = []
-    t0 = t[0]
+    t0 = tokens[0]
     if t0 == RIGHT_BRACKET:
         return json_array, tokens[1:]
 
