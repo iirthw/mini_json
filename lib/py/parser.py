@@ -11,13 +11,13 @@ COLON = ':'
 # each of the subroutines parse_array and parse_object will recursively call
 # parse (unless simple cases when further recursion might not be required)
 def parse(tokens):
-    t = tokens[0]
-    if t == LEFT_BRACKET:
-        return parse_array(tokens[1:])
-    elif t == LEFT_BRACE:
-        return parse_object(tokens[1:])
-    else:
-        return t, tokens[1:]
+        t = tokens[0]
+        if t == LEFT_BRACKET:
+            return parse_array(tokens[1:])
+        elif t == LEFT_BRACE:
+            return parse_object(tokens[1:])
+        else:
+            return t, tokens[1:]
 
 # ==============================================================================
 #
@@ -55,18 +55,20 @@ def parse_array(tokens):
         return json_array, tokens[1:]
 
     while True:
+        if len(tokens) == 0:
+            return json_array, tokens
+
         json, tokens = parse(tokens)
-        json_array.append(json)
-        
-        if len(tokens) != 0:
-            raise Exception('No closing bracket found')
 
         t = tokens[0]
         if t == RIGHT_BRACKET:
+            print('found right bracket; rest of tokens are {}'.format(tokens[1:]))
             return json_array, tokens[1:]
         elif t != COMMA:
-            raise Exception('Expected a comma after object in the array')
+            raise Exception('Array elements must be separated by a comma')
         else:
+            print('Appending {} to {}'.format(json, json_array))
+            json_array.append(json)
             tokens = tokens[1:]
 
 
