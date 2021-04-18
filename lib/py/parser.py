@@ -62,12 +62,16 @@ def parse_array(tokens):
 
         t = tokens[0]
         if t == RIGHT_BRACKET:
-            print('found right bracket; rest of tokens are {}'.format(tokens[1:]))
+            print('[{}] found right bracket; rest of tokens are {}'.format(
+                parse_array.__name__, tokens[1:])
+            )
             return json_array, tokens[1:]
         elif t != COMMA:
             raise Exception('Array elements must be separated by a comma')
         else:
-            print('Appending {} to {}'.format(json, json_array))
+            print('[{}] Appending {} to {}'.format(
+                parse_array.__name__, json, json_array)
+            )
             json_array.append(json)
             tokens = tokens[1:]
 
@@ -76,8 +80,8 @@ def parse_array(tokens):
 #
 # ==============================================================================
 def main():
-    arr = parse_array([1, ',', 2, ',', 3, ',', 4, ']'])
-    print(arr)
+    arr, tokens_remain = parse_array([1, ',', 2, ',', 3, ',', 4, ']'])
+    print('[{}] parsed array: {}'.format(main.__name__, arr))
 
 if __name__ == "__main__":
     main()
