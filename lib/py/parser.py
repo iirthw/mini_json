@@ -80,7 +80,7 @@ def parse_array(tokens):
 #
 # ==============================================================================
 def main():
-    arr, tokens_remain = parse_array([1, ',', 2, ',', 3, ',', 4, ']'])
+    arr, _ = parse_array([1, ',', 2, ',', 3, ',', 4, ']'])
     print('[{}] parsed array: {}'.format(main.__name__, arr))
 
 if __name__ == "__main__":
