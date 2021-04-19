@@ -29,12 +29,16 @@ def parse_object(tokens):
         return json_obj, tokens[1:]
 
     while True:
-        key, tokens = parse(tokens)
-
-        if len(tokens) != 0:
+        if len(tokens) == 0:
             raise Exception('No closing right brace found')
 
+        key, tokens = parse(tokens)
+        print('[{}] key: {}'.format(parse_object.__name__, key))
+        if key == RIGHT_BRACE or len(tokens) == 0:
+            return json_obj, tokens
+
         t = tokens[0]
+        print('[{}] t: {}'.format(parse_object.__name__, t))
         if t == RIGHT_BRACE:
             return json_obj, tokens[1:]
         elif t != COLON:
@@ -43,6 +47,10 @@ def parse_object(tokens):
             value, tokens_rest = parse(tokens[1:])
             json_obj[key] = value
             tokens = tokens_rest
+            print('[{}] inserted {} at {}'.format(
+                parse_object.__name__, value, key)
+            )
+            print('[{}] rest of the tokens {}'.format(parse_object.__name__, tokens_rest))
 
 
 # ==============================================================================
@@ -82,6 +90,12 @@ def parse_array(tokens):
 def main():
     arr, _ = parse_array([1, ',', 2, ',', 3, ',', 4, ']'])
     print('[{}] parsed array: {}'.format(main.__name__, arr))
+
+    tokens_obj = ['{', 'xyz', ':', '123', '}']
+    #tokens_obj = ['{', 'value', ':', '{', 'name', ':', 'john', ',',
+    # 'id', ':', '90', '}', ',', 'key', ':', 'foo', '}']
+    obj, tokens_rest = parse_object(tokens_obj)
+    print('[{}] parsed obj: {}'.format(main.__name__, obj))
 
 if __name__ == "__main__":
     main()
